@@ -5,12 +5,14 @@ import com.main.GamePanel;
 import com.main.gamestates.manager.GameState;
 import com.main.gamestates.manager.GameStateManager;
 import com.main.input.MouseInput;
+import com.main.tilemap.Background;
 
 
 import java.awt.*;
 
 public class MainMenu extends GameState {
 
+    private Background bg;
     private GameStateManager gsm;
     private GamePanel panel;
     private MouseInput mouseInput;
@@ -20,6 +22,8 @@ public class MainMenu extends GameState {
         this.gsm = gsm;
         this.panel = panel;
 
+        bg = new Background("/backgroundimage.png", 1);
+        bg.setVector(-0.1f, 0);
     }
 
     public void init() {
@@ -28,9 +32,13 @@ public class MainMenu extends GameState {
     }
 
 
-    public void tick(){ }
+    public void tick(){
+        bg.tick();
+    }
 
     public void render(Graphics g){
+
+        bg.render(g);
 
         //-------------main menu------------------
 

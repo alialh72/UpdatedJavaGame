@@ -2,12 +2,15 @@ package com.main.mainobjects;
 
 import com.main.GamePanel;
 import com.main.HUD;
+import com.main.SpriteSheet;
 import com.main.core.Handler;
 import com.main.core.Position;
 import com.main.core.Size;
 import com.main.enums.ID;
+import com.main.gamestates.Game;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.Random;
 
 import static com.main.GamePanel.HEIGHT;
@@ -19,10 +22,14 @@ public class Player extends GameObject {
     private Random r = new Random();
     Handler handler;
 
+    private BufferedImage player_image;
+
     public Player(Position position, ID id,Handler handler) {
         super(position, id);
         this.handler = handler;
 
+        SpriteSheet ss = new SpriteSheet(Game.sprite_sheet);
+        player_image = ss.getSprite(1, 1, 32, 32);
     }
 
     @Override
@@ -86,6 +93,7 @@ public class Player extends GameObject {
     public void render(Graphics g) {
         g.setColor(Color.white);
         g.fillRect((int) position.x, (int) position.y, size.getWidth(), size.getHeight());
+//        g.drawImage(player_image, (int) position.x, (int) position.y, null);
     }
 
     @Override

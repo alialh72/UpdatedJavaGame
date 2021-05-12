@@ -12,14 +12,17 @@ import com.main.gamestates.manager.GameStateManager;
 import com.main.input.KeyInput;
 import com.main.mainobjects.Player;
 import com.main.mainobjects.Wall;
+import com.main.tilemap.Background;
 
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.image.BufferedImage;
 import java.util.Random;
 
 public class Game extends GameState {
 
+    private Background bg;
 
     private Window window;
     private GamePanel panel;
@@ -35,7 +38,14 @@ public class Game extends GameState {
     private GameStateManager gsm;
     private Spawn spawner;
 
+
+    public static BufferedImage sprite_sheet;
+
     public Game(GameStateManager gsm, GamePanel panel){
+        BufferedImageLoader loader = new BufferedImageLoader();
+        sprite_sheet = loader.loadImage("/sprite_sheet.png");
+
+
         this.panel = panel;
         this.gsm = gsm;
 
@@ -48,6 +58,7 @@ public class Game extends GameState {
         spawner = new Spawn(handler, hud);
 
         keyInput = new KeyInput(handler);
+
     }
 
     public void init() {
